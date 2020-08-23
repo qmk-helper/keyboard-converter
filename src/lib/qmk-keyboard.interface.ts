@@ -17,4 +17,5 @@ export interface Key {
   x: number;
   y: number;
   w?: number;
+  label?: string;
 }

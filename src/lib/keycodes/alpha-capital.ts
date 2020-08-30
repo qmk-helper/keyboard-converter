@@ -1,0 +1,30 @@
+import { LabelList } from ".";
+
+export let alphaKeys: LabelList = {
+  KC_A: { l: "A" },
+  KC_B: { l: "B" },
+  KC_C: { l: "C" },
+  KC_D: { l: "D" },
+  KC_E: { l: "E" },
+  KC_F: { l: "F" },
+  KC_G: { l: "G" },
+  KC_H: { l: "H" },
+  KC_I: { l: "I" },
+  KC_J: { l: "J" },
+  KC_K: { l: "K" },
+  KC_L: { l: "L" },
+  KC_M: { l: "M" },
+  KC_N: { l: "N" },
+  KC_O: { l: "O" },
+  KC_P: { l: "P" },
+  KC_Q: { l: "Q" },
+  KC_R: { l: "R" },
+  KC_S: { l: "S" },
+  KC_T: { l: "T" },
+  KC_U: { l: "U" },
+  KC_V: { l: "V" },
+  KC_W: { l: "W" },
+  KC_X: { l: "X" },
+  KC_Y: { l: "Y" },
+  KC_Z: { l: "Z" }
+};

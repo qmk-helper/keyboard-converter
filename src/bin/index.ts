@@ -72,13 +72,13 @@ if (qmkKeymapString) {
   keyboard.importQmkKeymap(qmkKeymap);
 }
 
-// // Convert QMK keyboard & keymap to KLE keyboard
+// Convert QMK keyboard & keymap to KLE keyboard
 // let kleKeyboard: KleKeyboard = keyboard2kle(qmkKeyboard, qmkKeymap);
 
 // let kleKeyboardSerialized = serialize(kleKeyboard);
 let keyboardString = JSON.stringify(keyboard.exportKleKeyboard()).slice(1, -1);
 
-// // Output to file or console
+// Output to file or console
 if (args["--outputFile"]) {
   fs.writeFileSync(args["--outputFile"], keyboardString);
 } else {

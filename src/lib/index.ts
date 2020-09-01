@@ -21,7 +21,7 @@ export class KeyboardConverter {
   importQmkKeyboard(qmkKeyboardJson: JSON) {
     this.keyboard = plainToClass(QmkKeyboard, qmkKeyboardJson);
   }
-  exportQmkKeyboard(simplified = true): object {
+  getKeyboard(simplified = false): object {
     if (simplified) {
       return classToPlain(this.keyboard);
     } else {
@@ -57,58 +57,3 @@ export class KeyboardConverter {
     return kleConverter.serialize();
   }
 }
-// export function keyboard2kle(
-//   qmkKeyboard: QmkKeyboard,
-//   qmkKeymap?: QmkKeymap
-// ): KleKeyboard {
-//   if (!qmkKeymap) {
-//     console.log("No keymap selected. Outputing available layouts:");
-//     return qmkToKleKeyboard(qmkKeyboard);
-//   } else {
-//     let combinedQmkKeyboard = combineQmkKeyboardWithKeymap(
-//       qmkKeyboard,
-//       qmkKeymap
-//     );
-//     let combinedKleKeyboard = qmkToKleKeyboard(combinedQmkKeyboard);
-//     return combinedKleKeyboard;
-//   }
-// }
-// function qmkToKleKeyboard(qmkKeyboard: QmkKeyboard): KleKeyboard {
-//   let kleKeyboard = new KleKeyboard();
-//   kleKeyboard.meta.name = `${qmkKeyboard.keyboard_name}`;
-//   let yOffset = 0;
-//   for (const [key, layout] of Object.entries(qmkKeyboard.layouts)) {
-//     console.log(key);
-//     addKeyboard(kleKeyboard, yOffset, key, qmkKeyboard.width, layout);
-
-//     yOffset += qmkKeyboard.height + 1;
-//   }
-//   return kleKeyboard;
-// }
-// function combineQmkKeyboardWithKeymap(
-//   qmkKeyboard: QmkKeyboard,
-//   qmkKeymap: QmkKeymap
-// ): QmkKeyboard {
-//   if (qmkKeyboard.layouts[qmkKeymap.layout]) {
-//     let qmkLayout = qmkKeyboard.layouts[qmkKeymap.layout];
-//     // delete qmkKeyboard.layouts;
-//     qmkKeyboard.layouts = {};
-//     console.log("Success");
-//     console.log(qmkLayout);
-//     // let layoutsfsdfsfdsfds: QmkLayouts = {};
-//     qmkKeymap.layers?.forEach((layer, index) => {
-//       let layout = layerToLayout(qmkLayout.layout, layer);
-//       console.log("Layout" + index);
-//       console.log(layout);
-//       qmkKeyboard.layouts["Layer" + index] = JSON.parse(
-//         JSON.stringify({
-//           layout
-//         })
-//       );
-//     });
-
-//     return qmkKeyboard;
-//   } else {
-//     throw new Error("Unable to map layouts, please specify");
-//   }
-// }

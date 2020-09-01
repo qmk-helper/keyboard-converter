@@ -1,4 +1,4 @@
-import { KleKey, KleKeyboard, serialize } from "@buckwich/kle-serial";
+import { KleKey, KleKeyboard, serialize } from "@qmk-helper/kle-serial";
 import { IKey, IKeyboard, IKeymap, ILayout } from "./keyboard";
 import { Label } from "./keycodes";
 

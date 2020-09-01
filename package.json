@@ -1,24 +1,27 @@
 {
-  "name": "keyboard2kle",
+  "name": "@qmk-helper/keyboard-converter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "bin": "dist/bin/index.js",
+  "main": "dist/lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qmk-helper/keyboard2kle.git"
+    "url": "git+https://github.com/qmk-helper/keyboard-converter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/qmk-helper/keyboard2kle/issues"
+    "url": "https://github.com/qmk-helper/keyboard-converter/issues"
   },
-  "homepage": "https://github.com/qmk-helper/keyboard2kle#readme",
+  "homepage": "https://github.com/qmk-helper/keyboard-converter#readme",
   "dependencies": {
-    "@ijprest/kle-serial": "^0.15.1",
+    "@qmk-helper/kle-serial": "git+https://github.com/qmk-helper/kle-serial.git",
     "arg": "^4.1.3",
     "class-transformer": "^0.3.1",
     "reflect-metadata": "^0.1.13",

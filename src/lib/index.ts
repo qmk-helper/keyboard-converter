@@ -57,3 +57,4 @@ export class KeyboardConverter {
     return kleConverter.serialize();
   }
 }
+export { KleConverter } from "./kle-converter";

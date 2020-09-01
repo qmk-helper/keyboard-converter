@@ -3,9 +3,9 @@ import { IKey, IKeyboard, IKeymap, ILayout } from "./keyboard";
 import { Label } from "./keycodes";
 
 export class KleConverter {
-  kleKeyboard: KleKeyboard;
-  keyboard: IKeyboard;
-  selectedLayout?: number;
+  public kleKeyboard: KleKeyboard;
+  public keyboard: IKeyboard;
+  public selectedLayout?: number;
 
   constructor(keyboard: IKeyboard) {
     this.keyboard = keyboard;
@@ -81,14 +81,14 @@ export class KleConverter {
   serialize(): object {
     return serialize(this.kleKeyboard);
   }
-  private generateKleKeys(layout: ILayout, labels: Label[] = [], yOffset = 0) {
+  generateKleKeys(layout: ILayout, labels: Label[] = [], yOffset = 0) {
     layout.keys.forEach((key, index) => {
       this.kleKeyboard.keys.push(
         this.keylabelToKleKey(key, labels[index], yOffset)
       );
     });
   }
-  private keylabelToKleKey(key: IKey, label?: Label, yOffset = 0): KleKey {
+  keylabelToKleKey(key: IKey, label?: Label, yOffset = 0): KleKey {
     let kleKey = new KleKey();
     kleKey.x = key.x;
     kleKey.y = key.y + yOffset;
@@ -109,7 +109,7 @@ export class KleConverter {
 
     return kleKey;
   }
-  private addDecal(y: number, text: string) {
+  addDecal(y: number, text: string) {
     let decalKey = new KleKey();
     decalKey.x = 0;
     decalKey.y = y;

@@ -18,7 +18,7 @@ export class KeyboardConverter {
   };
 
   private labels = new Labels();
-  importQmkKeyboard(qmkKeyboardJson: JSON) {
+  importQmkKeyboard(qmkKeyboardJson: any) {
     this.keyboard = plainToClass(QmkKeyboard, qmkKeyboardJson);
   }
   getKeyboard(simplified = false): object {
@@ -28,7 +28,7 @@ export class KeyboardConverter {
       return this.keyboard;
     }
   }
-  importQmkKeymap(qmkKeymapJson: JSON) {
+  importQmkKeymap(qmkKeymapJson: any) {
     let qmkKeymap = plainToClass(QmkKeymap, qmkKeymapJson);
     let keymap: IKeymap = {
       name: qmkKeymap.keymap,
@@ -48,7 +48,7 @@ export class KeyboardConverter {
   exportQmkKeymap(): string {
     throw new Error("Not Implemented");
   }
-  importKleKeyboard(kleKeyboardJSON: JSON) {
+  importKleKeyboard(kleKeyboardJson: any) {
     throw new Error("Not Implemented");
   }
   exportKleKeyboard(): object {

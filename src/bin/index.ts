@@ -63,7 +63,7 @@ if (args["--keymapString"]) {
 }
 
 // Convert Strings to JSON
-let qmkKeyboard: JSON = JSON.parse(qmkKeyboardString);
+let qmkKeyboard = JSON.parse(qmkKeyboardString);
 let keyboard = new KeyboardConverter();
 keyboard.importQmkKeyboard(qmkKeyboard);
 

@@ -11,10 +11,10 @@ export let modifierKeys: LabelList = {
   KC_LCTL: { l: "Ctrl", d: "Left Control" },
   KC_LSFT: { l: "Shift", d: "Left Shift" },
   KC_LALT: { l: "Alt", d: "Left Alt" },
-  KC_LGUI: { l: "GUI", d: "Left GUI" },
+  KC_LGUI: { l: "Super", d: "Left GUI" },
 
   KC_RCTL: { l: "Ctrl", d: "Right Control" },
   KC_RSFT: { l: "Shift", d: "Right Shift" },
   KC_RALT: { l: "Alt", d: "Right Alt" },
-  KC_RGUI: { l: "GUI", d: "Right GUI" }
+  KC_RGUI: { l: "Super", d: "Right GUI" }
 };

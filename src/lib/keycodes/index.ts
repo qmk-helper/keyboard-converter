@@ -1,25 +1,29 @@
 import { alphaKeys } from "./alpha-capital";
+import { defaultKeys } from "./default";
 import { functionKeys } from "./function-keys";
+import { internationalKeys } from "./international";
 import { longFormKeycodes } from "./long-names";
 import { modifierKeys } from "./modifier";
 import { numberKeys } from "./number";
 import { numpadKeys } from "./numpad";
 import { otherKeys } from "./other";
-import { otherNormalKeys } from "./other-normal-keys";
+import { symbolKeys } from "./symbols";
 
 export type LabelList = { [key: string]: Label };
 
 export class Labels {
   labels: LabelList = {
-    ...this.applyStyle(alphaKeys, { backgroundColor: "#aaaabb" }), //light blue
-    ...this.applyStyle(numberKeys, { backgroundColor: "#aabbaa" }), // light green
-    ...this.applyStyle(otherNormalKeys, { backgroundColor: "#bbaaaa" }), // light reed
+    ...this.applyStyle(alphaKeys, { backgroundColor: "#ffffff" }),
+    ...this.applyStyle(defaultKeys, { backgroundColor: "#eeeeee" }),
+    ...this.applyStyle(functionKeys, { backgroundColor: "#eeeeff" }),
+    ...this.applyStyle(internationalKeys, { backgroundColor: "#fffae6" }),
+    ...this.applyStyle(modifierKeys, { backgroundColor: "#e6ffed" }),
+    ...this.applyStyle(numberKeys, { backgroundColor: "#ffeeff" }),
 
-    ...this.applyStyle(functionKeys, { backgroundColor: "#555555" }),
-    ...this.applyStyle(modifierKeys, { backgroundColor: "#446644" }),
-
-    ...this.applyStyle(numpadKeys, { backgroundColor: "#664444" }),
-    ...this.applyStyle(otherKeys, { backgroundColor: "#444466" })
+    // ...this.applyStyle(otherNormalKeys, { backgroundColor: "#eedddd" }), // light red
+    ...this.applyStyle(numpadKeys, { backgroundColor: "#ccaaaa" }),
+    ...this.applyStyle(otherKeys, { backgroundColor: "#ffeeee" }),
+    ...this.applyStyle(symbolKeys, { backgroundColor: "#444466" })
   };
   style = {
     undefined: { backgroundColor: "#cc9999", textColor: "#ff0000" }

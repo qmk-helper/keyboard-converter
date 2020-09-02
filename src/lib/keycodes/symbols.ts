@@ -1,6 +1,6 @@
 import { LabelList } from ".";
 
-export let otherNormalKeys: LabelList = {
+export let symbolKeys: LabelList = {
   KC_MINS: { l: "-", L: "_" },
   KC_EQL: { l: "=", L: "+" },
   KC_LBRC: { l: "{", L: "[" },

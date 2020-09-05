@@ -39,15 +39,15 @@ export class Labels {
       label.code = qmkKeyCode;
       return label;
     } else {
-      return new Label(qmkKeyCode, qmkKeyCode, this.style.undefined);
+      return new Label(qmkKeyCode, qmkKeyCode);
     }
   }
   private applyStyle(labels: LabelList, style: IStyle): LabelList {
-    for (const key in labels) {
-      if (!labels[key].style) {
-        labels[key].style = style;
-      }
-    }
+    // for (const key in labels) {
+    //   if (!labels[key].style) {
+    //     labels[key].style = style;
+    //   }
+    // }
     return labels;
   }
 }

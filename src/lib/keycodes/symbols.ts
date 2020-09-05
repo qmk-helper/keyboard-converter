@@ -11,8 +11,8 @@ export let symbolKeys: LabelList = {
   KC_SCLN: { l: ";", L: ":" },
   KC_QUOT: { l: "'", L: '"' },
 
-  KC_GRV: { l: "#", L: "~" },
-  KC_ZKHK: { l: "#", L: "~" },
+  KC_GRV: { l: "`", L: "~" },
+  KC_ZKHK: { l: "`", L: "~" },
   KC_COMM: { l: ",", L: "<" },
   KC_DOT: { l: ".", L: ">" },
   KC_SLSH: { l: "/", L: "?" },

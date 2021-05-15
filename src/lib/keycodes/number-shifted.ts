@@ -1,0 +1,25 @@
+import { LabelList } from ".";
+
+export let numberShiftedKeys: LabelList = {
+  KC_TILD: { l: "~" },
+  KC_EXLM: { l: "!" },
+  KC_AT: { l: "@" },
+  KC_HASH: { l: "#" },
+  KC_DLR: { l: "$" },
+  KC_PERC: { l: "%" },
+  KC_CIRC: { l: "^" },
+  KC_AMPR: { l: "&" },
+  KC_ASTR: { l: "*" },
+  KC_LPRN: { l: "(" },
+  KC_RPRN: { l: ")" },
+  KC_UNDS: { l: "_" },
+  KC_PLUS: { l: "+" },
+  KC_LCBR: { l: "{" },
+  KC_RCBR: { l: "}" },
+  KC_PIPE: { l: "|" },
+  KC_COLN: { l: ":" },
+  KC_DQT: { l: '"' },
+  KC_LT: { l: "<" },
+  KC_GT: { l: ">" },
+  KC_QUES: { l: "?" },
+};

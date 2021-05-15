@@ -229,5 +229,5 @@ export const longFormKeycodes: any = {
   UNICODE_MODE_LNX: "UC_M_LN",
   UNICODE_MODE_WIN: "UC_M_WI",
   UNICODE_MODE_BSD: "UC_M_BS",
-  UNICODE_MODE_WINC: "UC_M_WC"
+  UNICODE_MODE_WINC: "UC_M_WC",
 };

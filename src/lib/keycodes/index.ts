@@ -5,6 +5,7 @@ import { internationalKeys } from "./international";
 import { longFormKeycodes } from "./long-names";
 import { modifierKeys } from "./modifier";
 import { numberKeys } from "./number";
+import { numberShiftedKeys } from "./number-shifted";
 import { numpadKeys } from "./numpad";
 import { otherKeys } from "./other";
 import { symbolKeys } from "./symbols";
@@ -19,14 +20,15 @@ export class Labels {
     ...this.applyStyle(internationalKeys, { backgroundColor: "#fffae6" }),
     ...this.applyStyle(modifierKeys, { backgroundColor: "#e6ffed" }),
     ...this.applyStyle(numberKeys, { backgroundColor: "#ffeeff" }),
+    ...this.applyStyle(numberShiftedKeys, { backgroundColor: "#ffeeff" }),
 
     // ...this.applyStyle(otherNormalKeys, { backgroundColor: "#eedddd" }), // light red
     ...this.applyStyle(numpadKeys, { backgroundColor: "#ccaaaa" }),
     ...this.applyStyle(otherKeys, { backgroundColor: "#ffeeee" }),
-    ...this.applyStyle(symbolKeys, { backgroundColor: "#444466" })
+    ...this.applyStyle(symbolKeys, { backgroundColor: "#444466" }),
   };
   style = {
-    undefined: { backgroundColor: "#cc9999", textColor: "#ff0000" }
+    undefined: { backgroundColor: "#cc9999", textColor: "#ff0000" },
   };
   constructor() {
     for (let key in longFormKeycodes) {

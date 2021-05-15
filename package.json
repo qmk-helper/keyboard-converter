@@ -1,6 +1,6 @@
 {
   "name": "@qmk-helper/keyboard-converter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "bin": "dist/bin/index.js",
   "main": "dist/lib/index.js",

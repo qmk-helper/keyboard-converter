@@ -24,8 +24,10 @@ const args = arg({
   "--outputFile": String,
   "-o": "--outputFile",
 
+  "--qmkCode": String,
+
   // Overwrite used layout
-  "--layout": String
+  "--layout": String,
 });
 
 // Get Keyboard
@@ -83,4 +85,9 @@ if (args["--outputFile"]) {
   fs.writeFileSync(args["--outputFile"], keyboardString);
 } else {
   console.log(keyboardString);
+}
+
+if (args["--qmkCode"]) {
+  let qmkCode = keyboard.exportQmkCode();
+  console.log(qmkCode);
 }

@@ -1,5 +1,5 @@
-import { Keyboard } from "@qmk-helper/kle-serial/dist/interfaces";
-import { IKey, IKeyboard, IKeymap, ILayout } from "./keyboard";
+import { IKey, IKeyboard } from "./keyboard";
+import { Label } from "./keycodes";
 
 interface ISymbols {
   tl: string;
@@ -43,7 +43,7 @@ const CodeSymbols: ISymbols = {
   bm: "",
   br: "",
   pad: "",
-  sl: "",
+  sl: " ",
   sm: ",",
   sr: ",",
 };
@@ -59,21 +59,53 @@ export class QmkCode {
     this.commentMatrixPrinter = new MatrixPrinter(BlockSymbols);
   }
 
-  public printLayer(layer = 0) {
-    const keys = this.keyboard.layouts[0].keys;
-    const newKeys = keys.map((key, index) => {
-      key.label = this.keyboard.keymaps[0].layers[0]?.[index];
+  public keymap2c(keymapName: string): string {
+    const keymap = this.keyboard.keymaps.find(
+      (keymap) => keymap.name === keymapName
+    );
+    if (!keymap) {
+      throw new Error(`Keymap ${keymapName} not found`);
+    }
+    const layout = this.keyboard.layouts.find(
+      (layput) => layput.name === keymap.layout
+    );
+    if (!layout) {
+      throw new Error(`Layout ${keymap.layout} not found`);
+    }
+    this.keys = layout.keys;
+    this.size = this.getSize();
+    return [
+      "// clang-format off",
+      "const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {",
+      ...keymap.layers.map((layer, index) => {
+        if (layer) {
+          return this.printLayer(layer, index, keymap.layout);
+        }
+      }),
+      "};",
+      "// clang-format on",
+    ].join("\n");
+  }
+
+  private printLayer(layer: Label[], index: number, layout: string): string {
+    const newKeys = this.keys.map((key, index) => {
+      key.label = layer[index];
+      if (key.label?.code) {
+        key.label.code = cleanAny(key.label.code);
+      }
+      if (key.label?.l) {
+        key.label.l = cleanAny(key.label.l);
+      }
       return key;
     });
 
-    this.keys = newKeys;
-    this.size = this.getSize();
+    const result =
+      [
+        ...this.layerToComment(newKeys, index, layout),
 
-    const result = [
-      this.layerToComment(newKeys),
-      this.layerToCode(newKeys),
-    ].join("\n");
-    console.log(result);
+        ...this.layerToCode(newKeys, index, layout),
+      ].join("\n") + "\n";
+    //console.log(result);
     return result;
   }
   private getSize() {
@@ -90,7 +122,11 @@ export class QmkCode {
       { rows: 0, cols: 0 }
     );
   }
-  private layerToComment(keys: IKey[]) {
+  private layerToComment(
+    keys: IKey[],
+    index: number,
+    layout: string
+  ): string[] {
     const commentMatrix = this.generateEmptyMatrix();
 
     keys.forEach((key, index) => {
@@ -98,10 +134,16 @@ export class QmkCode {
     });
 
     cleanMatrix(commentMatrix);
-    return this.commentMatrixPrinter.print(commentMatrix);
+    return [
+      `/* Layer ${index}:`,
+      ...this.commentMatrixPrinter
+        .print(commentMatrix)
+        .map((line) => ` * ${line}`),
+      " */",
+    ];
   }
 
-  private layerToCode(keys: IKey[]) {
+  private layerToCode(keys: IKey[], index: number, layout: string): string[] {
     const codeMatrix = this.generateEmptyMatrix();
 
     keys.forEach((key) => {
@@ -109,7 +151,11 @@ export class QmkCode {
     });
 
     cleanMatrix(codeMatrix);
-    return this.codeMatrixPrinter.print(codeMatrix);
+    return [
+      `  [${index}] = ${layout}(`,
+      ...this.codeMatrixPrinter.print(codeMatrix).map((line) => `   ${line}`),
+      "  ),",
+    ];
   }
 
   private generateEmptyMatrix() {
@@ -123,7 +169,7 @@ export class QmkCode {
 class MatrixPrinter {
   constructor(public S: ISymbols) {}
 
-  public print(matrix: (string | undefined)[][]): string {
+  public print(matrix: (string | undefined)[][]): string[] {
     const colLength = Array(matrix[0].length).fill(5);
     matrix.forEach((row) => {
       for (let i = 0; i < colLength.length; i++) {
@@ -151,7 +197,7 @@ class MatrixPrinter {
 
           if (mm) {
             celline1 = `${this.TL(ml, tl, tm, mm)}`.padEnd(pad, this.S.pad);
-            celline2 = `${!ml?this.S.sl:this.S.sm}${this.centerPad(
+            celline2 = `${!ml ? this.S.sl : this.S.sm}${this.centerPad(
               col ?? "",
               pad - 1
             )}`.padEnd(pad);
@@ -164,11 +210,21 @@ class MatrixPrinter {
           return { celline1, celline2 };
         });
         return [
-          rowObj.map(({ celline1 }) => celline1).join(""),
-          rowObj.map(({ celline2 }) => celline2).join(""),
-        ].join("\n");
+          rowObj
+            .map(({ celline1 }) => celline1)
+            .join("")
+            .trimRight(),
+          rowObj
+            .map(({ celline2 }) => celline2)
+            .join("")
+            .trimRight(),
+        ];
       })
-    .join("\n");
+      .reduce((acc, line) => {
+        acc.push(...line);
+        return acc;
+      }, [])
+      .filter((line) => line.trim().length > 0);
   }
 
   private TL(ml: boolean, tl: boolean, tm: boolean, mm: boolean) {
@@ -229,4 +285,10 @@ class MatrixPrinter {
 function cleanMatrix<T>(matrix: (T | undefined)[][]) {
   matrix.forEach((row) => row.push(undefined));
   matrix.push(matrix[0].map(() => undefined));
+}
+function cleanAny(keycode: string) {
+  if (keycode.startsWith("ANY(") && keycode.endsWith(")"))
+    keycode = keycode.slice(4, -1);
+
+  return keycode;
 }

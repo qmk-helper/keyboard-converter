@@ -4,10 +4,11 @@ import {
   Expose,
   plainToClass,
   Transform,
-  Type
+  TransformationType,
+  Type,
 } from "class-transformer";
-import { TransformationType } from "class-transformer/enums";
 import "reflect-metadata";
+
 export class QmkKeyboard {
   keyboard_name: string = "";
   keyboard_folder: string = "";
@@ -28,7 +29,7 @@ function TransformLayout() {
       for (let name in layouts) {
         transformedLayouts.push({
           name,
-          keys: plainToClass(DefaultKey, layouts[name].layout)
+          keys: plainToClass(DefaultKey, layouts[name].layout),
         });
       }
       return transformedLayouts;
@@ -87,7 +88,7 @@ export class DefaultKey {
       this.rotation = {
         angle,
         x: x + this.width / 2,
-        y: y + this.height / 2
+        y: y + this.height / 2,
       };
     } else {
       this.rotation = { angle, x, y };

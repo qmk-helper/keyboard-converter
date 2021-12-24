@@ -11,7 +11,7 @@ export let defaultKeys: LabelList = {
   KC_BSPC: { l: "⌫" },
   KC_TAB: { l: "Tab" },
 
-  KC_SPC: { l: " " },
+  KC_SPC: { l: "␣" },
 
   KC_DEL: { l: "Del" },
   KC_END: { l: "End" },
@@ -22,5 +22,5 @@ export let defaultKeys: LabelList = {
   KC_RGHT: { l: "⭢" },
   KC_LEFT: { l: "⭠" },
   KC_DOWN: { l: "⭣" },
-  KC_UP: { l: "⭡" }
+  KC_UP: { l: "⭡" },
 };

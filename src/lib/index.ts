@@ -1,11 +1,11 @@
 import { classToPlain, plainToClass } from "class-transformer";
 import "reflect-metadata";
-import { IKey, IKeyboard, IKeymap } from "./keyboard";
+import { IKeyboard, IKeymap } from "./keyboard";
+import { QmkCode } from "./keyboard-to-qmkcode";
 import { Label, Labels } from "./keycodes";
 import { KleConverter } from "./kle-converter";
 import { QmkKeyboard } from "./qmk-keyboard.interface";
 import { QmkKeymap } from "./qmk-keymap.interface";
-import {QmkCode} from "./keyboard-to-qmkcode";
 export class KeyboardConverter {
   keyboard: IKeyboard = {
     keyboard_name: "",
@@ -59,10 +59,8 @@ export class KeyboardConverter {
     return kleConverter.serialize();
   }
   exportQmkCode() {
-    const qmkCode=new QmkCode(this.keyboard);
-    qmkCode.printLayer(0);
-   
-   
+    const qmkCode = new QmkCode(this.keyboard);
+    return qmkCode.keymap2c("buckwich");
   }
 }
 export { KleConverter } from "./kle-converter";

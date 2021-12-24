@@ -78,16 +78,16 @@ if (qmkKeymapString) {
 // let kleKeyboard: KleKeyboard = keyboard2kle(qmkKeyboard, qmkKeymap);
 
 // let kleKeyboardSerialized = serialize(kleKeyboard);
-let keyboardString = JSON.stringify(keyboard.exportKleKeyboard()).slice(1, -1);
+let output: string;
+if (args["--qmkCode"]) {
+  output = keyboard.exportQmkCode();
+} else {
+  output = JSON.stringify(keyboard.exportKleKeyboard()).slice(1, -1);
+}
 
 // Output to file or console
 if (args["--outputFile"]) {
-  fs.writeFileSync(args["--outputFile"], keyboardString);
+  fs.writeFileSync(args["--outputFile"], output);
 } else {
-  console.log(keyboardString);
-}
-
-if (args["--qmkCode"]) {
-  let qmkCode = keyboard.exportQmkCode();
-  console.log(qmkCode);
+  console.log(output);
 }

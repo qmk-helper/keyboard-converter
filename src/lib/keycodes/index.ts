@@ -1,4 +1,5 @@
 import { alphaKeys } from "./alpha-capital";
+import { customKeys } from "./custom";
 import { defaultKeys } from "./default";
 import { functionKeys } from "./function-keys";
 import { internationalKeys } from "./international";
@@ -7,7 +8,7 @@ import { modifierKeys } from "./modifier";
 import { numberKeys } from "./number";
 import { numberShiftedKeys } from "./number-shifted";
 import { numpadKeys } from "./numpad";
-import { otherKeys } from "./other";
+import { otherKeys } from "./other-nf";
 import { symbolKeys } from "./symbols";
 
 export type LabelList = { [key: string]: Label };
@@ -26,6 +27,7 @@ export class Labels {
     ...this.applyStyle(numpadKeys, { backgroundColor: "#ccaaaa" }),
     ...this.applyStyle(otherKeys, { backgroundColor: "#ffeeee" }),
     ...this.applyStyle(symbolKeys, { backgroundColor: "#444466" }),
+    ...this.applyStyle(customKeys, { backgroundColor: "#444466" }),
   };
   style = {
     undefined: { backgroundColor: "#cc9999", textColor: "#ff0000" },

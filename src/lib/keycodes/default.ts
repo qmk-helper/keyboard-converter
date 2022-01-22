@@ -19,8 +19,8 @@ export let defaultKeys: LabelList = {
   KC_PGUP: { l: "PgUp" },
   KC_PGDN: { l: "PgDn" },
 
-  KC_RGHT: { l: "⭢" },
-  KC_LEFT: { l: "⭠" },
-  KC_DOWN: { l: "⭣" },
-  KC_UP: { l: "⭡" },
+  KC_RGHT: { l: "→" },
+  KC_LEFT: { l: "←" },
+  KC_DOWN: { l: "↓" },
+  KC_UP: { l: "↑" },
 };

@@ -96,6 +96,9 @@ export class QmkCode {
       if (key.label?.l) {
         key.label.l = cleanAny(key.label.l);
       }
+      if (key.label?.L) {
+        key.label.L = cleanAny(key.label.L);
+      }
       return key;
     });
 

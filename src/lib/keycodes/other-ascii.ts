@@ -63,13 +63,13 @@ export let otherKeys: LabelList = {
   KC_SLEP: { l: "System Sleep" },
   KC_SYSTEM_WAKE: { l: "System Wake" },
   KC_WAKE: { l: "System Wake" },
-  KC_MUTE: { l: "🔇" },
-  KC_VOLU: { l: "🔊" },
-  KC_VOLD: { l: "🔉" },
-  KC_MNXT: { l: "⏭️" },
-  KC_MPRV: { l: "⏮️" },
-  KC_MSTP: { l: "⏹️" },
-  KC_MPLY: { l: "⏯️" },
+  KC_MUTE: { l: "ﱝ" },
+  KC_VOLU: { l: "ﱛ" },
+  KC_VOLD: { l: "ﱜ" },
+  KC_MNXT: { l: "怜" },
+  KC_MPRV: { l: "玲" },
+  KC_MSTP: { l: "栗" },
+  KC_MPLY: { l: "懶" },
   KC_MSEL: { l: "Launch Media Player" },
   KC_EJCT: { l: "⏏️" },
 
@@ -102,6 +102,6 @@ export let otherKeys: LabelList = {
   KC_BRIGHTNESS_DOWN: { l: "Brightness Down" },
   KC_BRID: { l: "Brightness Down" },
 
-  KC_NO: { l: "", style: { backgroundColor: "#333333" }, d: "NO OP" },
-  KC_TRNS: { l: "", style: { backgroundColor: "#eeeeee" }, d: "Transparent" }
+  KC_NO: { l: "", style: { backgroundColor: "#333333" }, d: "NO OP" },
+  KC_TRNS: { l: " ", style: { backgroundColor: "#eeeeee" }, d: "Transparent" },
 };

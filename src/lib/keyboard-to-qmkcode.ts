@@ -156,7 +156,7 @@ export class QmkCode {
     cleanMatrix(codeMatrix);
     return [
       `  [${index}] = ${layout}(`,
-      ...this.codeMatrixPrinter.print(codeMatrix).map((line) => `   ${line}`),
+      ...this.codeMatrixPrinter.print(codeMatrix).map((line,i,lines) => `   ${i!==lines.length-1?line:line.slice(0,-1)}`),
       "  ),",
     ];
   }

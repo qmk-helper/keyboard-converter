@@ -22,9 +22,10 @@ const args = arg({
 
   // KLE Output File
   "--outputFile": String,
-  "-o": "--outputFile",
+  "--o": "--outputFile",
 
-  "--qmkCode": String,
+  "--qmkCodeTemplate": String,
+  "--qct":"--qmkCodeTemplate",
 
   // Overwrite used layout
   "--layout": String,
@@ -79,8 +80,12 @@ if (qmkKeymapString) {
 
 // let kleKeyboardSerialized = serialize(kleKeyboard);
 let output: string;
-if (args["--qmkCode"]) {
-  output = keyboard.exportQmkCode();
+if (args["--qmkCodeTemplate"]) {
+  const keymapTemplateString = fs.readFileSync(args["--qmkCodeTemplate"]).toString();
+  const keymapContentString = keyboard.exportQmkCode();
+
+  output = keymapTemplateString.replace("// <<KEYMAP_GOES_HERE>>",keymapContentString)
+  
 } else {
   output = JSON.stringify(keyboard.exportKleKeyboard()).slice(1, -1);
 }
